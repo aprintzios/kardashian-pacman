@@ -2,6 +2,7 @@
     background-color: black
 }
 .body{
+    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -33,6 +34,7 @@ header, footer{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    align-items: flex-start;
     gap: 20px;
 }
 .row{
@@ -48,12 +50,83 @@ header, footer{
 .wall {
     background-color: rgb(255, 107, 181);
 }
-#restart{
-    background-color: white;
+footer{
+    margin-top: 30px;
 }
-#nextLvl{
-    background-color: white;
+#points{
+    color: hotpink;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 40px;
+    margin-left: 20px;
 }
 #result{
     color: hotpink;
 }
+#result_div{
+    display: block;
+    border: solid rgb(255, 107, 181);
+}
+
+.button2{
+    display:inline-block;
+    padding:0.5em 1em;
+    border:0.16em solid hotpink;
+    margin:0 0.3em 0.3em 1.5em;
+    box-sizing: border-box;
+    text-decoration:none;
+    text-transform:uppercase;
+    font-family:'Roboto',sans-serif;
+    font-weight:400;
+    color:#ffc4e7;
+    text-align:center;
+    transition: all 0.15s;
+}
+.button2:hover{
+    color:hotpink;
+    border-color:hotpink;
+    cursor: pointer;
+}
+.button2:active{
+    color:hotpink;
+    border-color:hotpink;
+}
+@media all and (max-width:30em){
+    .button2{
+        display:block;
+        margin:0.4em auto;
+    }
+}
+
+#overlay {
+    position: fixed; /* Sit on top of the page content */
+    display: none; /* Hidden by default */
+    width: 100%; /* Full width (cover the whole page) */
+    height: 100%; /* Full height (cover the whole page) */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(74, 38, 38, 0.502); /* Black background with opacity */
+    z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+    cursor: pointer; /* Add a pointer on hover */
+  }
+  #overlayWin{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-size: 30px;
+    background-image: './img/overlayWin.png';
+    background-size: cover;
+    /* color: rgb(255, 203, 229); */
+    transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+  }
+  #nextLvl{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-size: 20px;
+    color: rgb(255, 203, 229);
+    transform: translate(-80%,100%);
+    -ms-transform: translate(-50%,-50%);
+  }
