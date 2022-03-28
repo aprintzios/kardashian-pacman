@@ -86,6 +86,7 @@ footer{
     color:#ffc4e7;
     text-align:center;
     transition: all 0.15s;
+    background-color: #240F0F;
 }
 .button2:hover{
     color:hotpink;
@@ -103,7 +104,7 @@ footer{
     }
 }
 
-#overlay {
+#overlayWin {
     position: fixed; /* Sit on top of the page content */
     display: none; /* Hidden by default */
     width: 100%; /* Full width (cover the whole page) */
@@ -116,7 +117,7 @@ footer{
     z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
     cursor: pointer; /* Add a pointer on hover */
   }
-  #overlayWin{
+  .overlayResult{
     position: absolute;
     top: 50%;
     left: 50%;
@@ -133,6 +134,28 @@ footer{
     left: 50%;
     font-size: 20px;
     color: rgb(255, 203, 229);
-    transform: translate(-80%,100%);
+    transform: translate(-80%,200%);
+    -ms-transform: translate(-50%,-50%);
+  }
+  #overlayLose {
+    position: fixed; /* Sit on top of the page content */
+    display: none; /* Hidden by default */
+    width: 100%; /* Full width (cover the whole page) */
+    height: 100%; /* Full height (cover the whole page) */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(74, 38, 38, 0.502); /* Black background with opacity */
+    z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+    cursor: pointer; /* Add a pointer on hover */
+  }
+  #loseRestart{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-size: 20px;
+    color: rgb(255, 203, 229);
+    transform: translate(-80%,200%);
     -ms-transform: translate(-50%,-50%);
   }
