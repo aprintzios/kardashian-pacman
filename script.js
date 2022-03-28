@@ -787,7 +787,9 @@ function collisionDetectionKimGem(node){
             gems.splice(i,1);
             // blingAudio.src = "";
             // blingAudio.src = "./audio/bling.wav";
-            blingAudio.play();
+            if (seOn){
+                blingAudio.play();
+            }
         }
     });
 
@@ -826,7 +828,9 @@ function gameOver(){
         bgAudio.pause();
         overlayLoseEl.style.display = "block";
         loseRestartBtn.addEventListener("click", restart);
-        kimLoseAudio.play();
+        if (seOn){
+            kimLoseAudio.play();
+        }
     }   
 }
 function restart(){
