@@ -63,14 +63,15 @@ class Player{
     }
 }
 class Ghost{
-    constructor(node){
+    constructor(node, name){
         this.node = node;
         this.x = nodeToCoord(node.value)[0];
         this.y = nodeToCoord(node.value)[1];
         this.type = "ghost";
+        this.name = name;
     }
-    drawGhost(ghostName){
-        this.node.updateBG(ghostName, true);
+    drawGhost(){
+        this.node.updateBG(this.name, true);
     }
 }
 class Gem{
@@ -98,6 +99,7 @@ class Wall{
 let NUM_ROWS = 9; 
 let NUM_COLS = 20;
 let boardSetup = false;
+let node;
 let nodes = [];
 let ghosts = [];
 let kim;
@@ -151,7 +153,7 @@ let wallMap = [
     [8,15]
 ];
 let gemsMap = [
-    //[0,0],
+    //[0,0], //kim position
     [0,1],
     [0,2],
     [0,3],
@@ -160,6 +162,7 @@ let gemsMap = [
     [0,6],
     [0,7],
     [0,8],
+    [0,9],
     [0,10],
     [0,11],
     [0,12],
@@ -168,6 +171,191 @@ let gemsMap = [
     [0,15],
     [0,16],
     [0,17],
+    [0,18],
+    [0,19],
+    // [1,0],
+    // //[1,1],
+    // [1,2],
+    // //[1,3],
+    // //[1,4],
+    // //[1,5],
+    // [1,6],
+    // //[1,7],
+    // [1,8],
+    // [1,9],
+    // [1,10],
+    // [1,11],
+    // //[1,12],
+    // [1,13],
+    // //[1,14],
+    // //[1,15],
+    // //[1,16],
+    // [1,17],
+    // //[1,18],
+    // [1,19],
+    // [2,0],
+    // [2,1],
+    // [2,2],
+    // [2,3],
+    // //[2,4],
+    // [2,5],
+    // [2,6],
+    // [2,7],
+    // [2,8],
+    // [2,9],
+    // [2,10],
+    // [2,11],
+    // [2,12],
+    // [2,13],
+    // [2,14],
+    // //[2,15],
+    // [2,16],
+    // [2,17],
+    // [2,18],
+    // [2,19],
+    // [3,0],
+    // //[3,1],
+    // //[3,2],
+    // [3,3],
+    // [3,4],
+    // [3,5],
+    // //[3,6],
+    // //[3,7],
+    // [3,8],
+    // [3,9],
+    // [3,10],
+    // [3,11],
+    // //[3,12],
+    // //[3,13],
+    // [3,14],
+    // [3,15],
+    // [3,16],
+    // //[3,17],
+    // //[3,18],
+    // [3,19],
+    // [4,0],
+    // [4,1],
+    // [4,2],
+    // [4,3],
+    // //[4,4],
+    // [4,5],
+    // [4,6],
+    // [4,7],
+    // [4,8],
+    // [4,9],
+    // [4,10],
+    // [4,11],
+    // [4,12],
+    // [4,13],
+    // [4,14],
+    // //[4,15],
+    // [4,16],
+    // [4,17],
+    // [4,18],
+    // [4,19],
+    // [5,0],
+    // //[5,1],
+    // [5,2],
+    // //[5,3],
+    // //[5,4],
+    // //[5,5],
+    // [5,6],
+    // //[5,7],
+    // [5,8],
+    // [5,9],
+    // [5,10],
+    // [5,11],
+    // //[5,12],
+    // [5,13],
+    // //[5,14],
+    // //[5,15],
+    // //[5,16],
+    // [5,17],
+    // //[5,18],
+    // [5,19],
+    // [6,0],
+    // [6,1],
+    // [6,2],
+    // [6,3],
+    // //[6,4],
+    // [6,5],
+    // [6,6],
+    // [6,7],
+    // [6,8],
+    // [6,9],
+    // [6,10],
+    // [6,11],
+    // [6,12],
+    // [6,13],
+    // [6,14],
+    // //[6,15],
+    // [6,16],
+    // [6,17],
+    // [6,18],
+    // [6,19],
+    // [7,0],
+    // //[7,1],
+    // //[7,2],
+    // [7,3],
+    // [7,4],
+    // [7,5],
+    // //[7,6],
+    // //[7,7],
+    // [7,8],
+    // [7,9],
+    // [7,10],
+    // [7,11],
+    // //[7,12],
+    // //[7,13],
+    // [7,14],
+    // [7,15],
+    // [7,16],
+    // //[7,17],
+    // //[7,18],
+    // [7,19],
+    // [8,0], //ghost position
+    // [8,1],
+    // [8,2],
+    // [8,3],
+    // //[8,4],
+    // [8,5],
+    // [8,6],
+    // [8,7],
+    // [8,8], //ghost position
+    // [8,9],
+    // [8,10],
+    // [8,11],
+    // [8,12],
+    // [8,13],
+    // [8,14],
+    // //[8,15],
+    // [8,16],
+    // [8,17],
+    // [8,18],
+    // [8,19]
+
+];
+let emptyMap = [
+    [0,0],
+    [0,1],
+    [0,2],
+    [0,3],
+    [0,4],
+    [0,5],
+    [0,6],
+    [0,7],
+    [0,8],
+    [0,9],
+    [0,10],
+    [0,11],
+    [0,12],
+    [0,13],
+    [0,14],
+    [0,15],
+    [0,16],
+    [0,17],
+    [0,18],
+    [0,19],
     [1,0],
     //[1,1],
     [1,2],
@@ -177,6 +365,17 @@ let gemsMap = [
     [1,6],
     //[1,7],
     [1,8],
+    [1,9],
+    [1,10],
+    [1,11],
+    //[1,12],
+    [1,13],
+    //[1,14],
+    //[1,15],
+    //[1,16],
+    [1,17],
+    //[1,18],
+    [1,19],
     [2,0],
     [2,1],
     [2,2],
@@ -186,6 +385,17 @@ let gemsMap = [
     [2,6],
     [2,7],
     [2,8],
+    [2,9],
+    [2,10],
+    [2,11],
+    [2,12],
+    [2,13],
+    [2,14],
+    //[2,15],
+    [2,16],
+    [2,17],
+    [2,18],
+    [2,19],
     [3,0],
     //[3,1],
     //[3,2],
@@ -195,6 +405,17 @@ let gemsMap = [
     //[3,6],
     //[3,7],
     [3,8],
+    [3,9],
+    [3,10],
+    [3,11],
+    //[3,12],
+    //[3,13],
+    [3,14],
+    [3,15],
+    [3,16],
+    //[3,17],
+    //[3,18],
+    [3,19],
     [4,0],
     [4,1],
     [4,2],
@@ -204,6 +425,17 @@ let gemsMap = [
     [4,6],
     [4,7],
     [4,8],
+    [4,9],
+    [4,10],
+    [4,11],
+    [4,12],
+    [4,13],
+    [4,14],
+    //[4,15],
+    [4,16],
+    [4,17],
+    [4,18],
+    [4,19],
     [5,0],
     //[5,1],
     [5,2],
@@ -213,6 +445,17 @@ let gemsMap = [
     [5,6],
     //[5,7],
     [5,8],
+    [5,9],
+    [5,10],
+    [5,11],
+    //[5,12],
+    [5,13],
+    //[5,14],
+    //[5,15],
+    //[5,16],
+    [5,17],
+    //[5,18],
+    [5,19],
     [6,0],
     [6,1],
     [6,2],
@@ -222,6 +465,17 @@ let gemsMap = [
     [6,6],
     [6,7],
     [6,8],
+    [6,9],
+    [6,10],
+    [6,11],
+    [6,12],
+    [6,13],
+    [6,14],
+    //[6,15],
+    [6,16],
+    [6,17],
+    [6,18],
+    [6,19],
     [7,0],
     //[7,1],
     //[7,2],
@@ -231,6 +485,17 @@ let gemsMap = [
     //[7,6],
     //[7,7],
     [7,8],
+    [7,9],
+    [7,10],
+    [7,11],
+    //[7,12],
+    //[7,13],
+    [7,14],
+    [7,15],
+    [7,16],
+    //[7,17],
+    //[7,18],
+    [7,19],
     [8,0],
     [8,1],
     [8,2],
@@ -239,19 +504,33 @@ let gemsMap = [
     [8,5],
     [8,6],
     [8,7],
-    [8,8]
-
+    [8,8],
+    [8,9],
+    [8,10],
+    [8,11],
+    [8,12],
+    [8,13],
+    [8,14],
+    //[8,15],
+    [8,16],
+    [8,17],
+    [8,18],
+    [8,19]
 ];
 let walls = [];
 let gems = [];
+let adj = [];
 let intervId;
 let score = 0;
+let level = 1;
 
 //cache elements
 let btn = document.getElementById("restart");
-let pointsEl = document.getElementById("points");
+let levelEl = document.getElementById("level");
 let board = document.querySelector(".board");
 let resultEl = document.getElementById("result");
+let overlayEl = document.getElementById("overlay");
+let nextLvlBtn = document.getElementById("nextLvl");
 
 //initialize
 init();
@@ -262,7 +541,7 @@ btn.addEventListener("click", restart);
 
 //functions
 function init(){
-
+    overlayEl.style.display = "none";
     //arrow key event lsitener
     document.addEventListener("keydown", playerMove);
     //initialize DOM
@@ -289,24 +568,82 @@ function init(){
                 row.appendChild(sqr);
             }
         }
-    }
-    boardSetup = true;
 
-    //initialize node array
-    for (let i=0; i<NUM_ROWS; i++){
-        nodes[i] = [];
-        for (let j=0; j<NUM_COLS; j++){
-            let newNode = new Node(coordToNode(i,j));
-            nodes[i].push(newNode);
+        //initialize node array
+        for (let i=0; i<NUM_ROWS; i++){
+            nodes[i] = [];
+            for (let j=0; j<NUM_COLS; j++){
+                let newNode = new Node(coordToNode(i,j));
+                nodes[i].push(newNode);
+            }
         }
+        //initialize walls
+        wallMap.forEach((element)=>{
+            let newWall = new Wall(nodes[element[0]][element[1]]);
+            nodes[element[0]][element[1]].contains.push(newWall);
+            walls.push(newWall);
+            newWall.drawWall();
+        })
+
+        //initialize Dijkstra adjacency array
+        for (let i=0; i<NUM_ROWS; i++){
+            for (let j=0; j<NUM_COLS; j++){
+                node = coordToNode(i,j);
+                adj[node] = [];
+                //add up neightbor
+                if (i!==0 && !collisionDetectionWall(nodes[i-1][j])){
+                    if (i===1 && j===0){
+                        console.log("got here");
+                    }
+                    adj[node].push([nodes[i-1][j].value,1]);
+                }
+                //add down neighbor
+                if (i!==(NUM_ROWS-1) && !collisionDetectionWall(nodes[i+1][j])){
+                    adj[node].push([nodes[i+1][j].value,1]);
+                }
+                //add left neighbor
+                if (j!==0 && !collisionDetectionWall(nodes[i][j-1])){
+                    adj[node].push([nodes[i][j-1].value,1]);
+                }
+                //add right neighbor
+                if (j!=(NUM_COLS-1) && !collisionDetectionWall(nodes[i][j+1])){
+                    adj[node].push([nodes[i][j+1].value,1]);
+                }
+            }
+        }
+        console.log(adj);
+
+    //initialize ghosts
+    kanye = new Ghost(nodes[8][10], "kanye");
+    pete = new Ghost(nodes[8][0], "kanye");
+    kris = new Ghost(nodes[8][19], "kanye");
+    ghosts.push(kanye);
+    ghosts.push(pete);
+    ghosts.push(kris);
+    //nodes[8][8].contains.push(kanye);
+    kanye.drawGhost();
+    pete.drawGhost();    
+    kris.drawGhost();
+    //initialize player(kim)
+    kim = new Player(nodes[0][0]);
+    nodes[0][0].contains.push(kim);
+    kim.drawPlayer();
+    boardSetup = true;
+    } else{
+        //empty map
+        emptyMap.forEach((element)=>{
+            clearNode(nodes[element[0]][element[1]]);
+        });
+        //initialize Kim
+        kim.node = nodes[0][0];
+        kim.x = 0;
+        kim.y = 0;
+
+        //initialize ghosts
+        kanye.node = nodes[8][10];
+        pete.node = nodes[8][0];
+        kris.node = nodes[8][19];
     }
-    //initialize walls
-    wallMap.forEach((element)=>{
-        let newWall = new Wall(nodes[element[0]][element[1]]);
-        nodes[element[0]][element[1]].contains.push(newWall);
-        walls.push(newWall);
-        newWall.drawWall();
-    })
 
     //initialize gems
     gemsMap.forEach((element)=>{
@@ -316,21 +653,14 @@ function init(){
         newGem.drawGem();
     })
 
-    //initialize player(kim)
-    kim = new Player(nodes[0][0]);
-    nodes[0][0].contains.push(kim);
-    kim.drawPlayer();
 
-    //initialize ghosts
-    kanye = new Ghost(nodes[8][8]);
-    ghosts.push(kanye);
-    nodes[8][8].contains.push(kanye);
-    kanye.drawGhost('kanye');
-
+    //clear all nodes with no player, gem, or ghost
+    emptyMap.forEach((element)=>{
+        let elNode = coordToNode(element[0], element[1]);
+    });
 
     //initialize ghostMove interval
-    intervId = setInterval(ghostMove, 500);
-
+    intervId = setInterval(ghostMove, 1000/level);
 }
 
 //game event functions
@@ -340,85 +670,144 @@ function playerMove(e){
             kLeft = true;
             if (kim.y!==0 && nodes[kim.x][kim.y-1]){
                 if(!collisionDetectionWall(nodes[kim.x][kim.y-1])){
-                    nodes[kim.x][kim.y].updateBG("black", false);
+                    clearNode(nodes[kim.x][kim.y]);
                     kim.y--;
                     kim.node = nodes[kim.x][kim.y];
                 }
             }
-            collisionDetectionGem(kim.node);
-            collisionDetectionGhost(kim.node);
+            collisionDetectionKimGem(kim.node);
+            if (collisionDetectionGhost(kim.node)){
+                gameOver();
+            }
             render();
+            checkForWin();
         break;
         case 38: //up
-        console.log(wallMap.includes([1, 1]));
             if (kim.x!==0 && nodes[kim.x-1][kim.y]){
                 if(!collisionDetectionWall(nodes[kim.x-1][kim.y])){
-                    nodes[kim.x][kim.y].updateBG("black", false);
+                    clearNode(nodes[kim.x][kim.y]);
                     kim.x--;
                     kim.node = nodes[kim.x][kim.y];
                 }
             }
-            collisionDetectionGem(kim.node);
+            collisionDetectionKimGem(kim.node);
+            if (collisionDetectionGhost(kim.node)){
+                gameOver();
+            }
             render();
+            checkForWin();
             break;
         case 39: //right
             kLeft = false;
             if (kim.y!==NUM_COLS-1 && nodes[kim.x][kim.y+1]){
                 if(!collisionDetectionWall(nodes[kim.x][kim.y+1])){
-                    nodes[kim.x][kim.y].updateBG("black", false);
+                    clearNode(nodes[kim.x][kim.y]);
                     kim.y++;
                     kim.node = nodes[kim.x][kim.y];
                     }
                 }
-                collisionDetectionGem(kim.node);
+                collisionDetectionKimGem(kim.node);
+                if (collisionDetectionGhost(kim.node)){
+                    gameOver();
+                }
                 render();
+                checkForWin();
             break;
         case 40: //down
             if (kim.x!==NUM_ROWS-1 && nodes[kim.x+1][kim.y]){
                 if(!collisionDetectionWall(nodes[kim.x+1][kim.y])){
-                    nodes[kim.x][kim.y].updateBG("black", false);
+                    clearNode(nodes[kim.x][kim.y]);
                     kim.x++;
                     kim.node = nodes[kim.x][kim.y];
                 }
             }
-            collisionDetectionGem(kim.node);
+            collisionDetectionKimGem(kim.node);
+            if (collisionDetectionGhost(kim.node)){
+                gameOver();
+            }
             render();
+            checkForWin();
             break;
     }
 
 }
 function ghostMove(){
+    let nextMoves = [];
+    ghosts.forEach((ghost)=>{
+        //get minPath
+        let mP = findMP(kim.node.value, ghost.node.value)
+        if (!collisionDetectionGhostGem(ghost.node)){
+            clearNode(ghost.node);
+        }
+        //get next move
+        let nextMove = mP.pop(); //throw away current location
+        nextMove = mP.pop(); //get next move
+        if (!nextMoves.includes(nextMove)){
+            nextMoves.push(nextMove);
+            let nextCoords = nodeToCoord(nextMove);
+            if (nextMove === 0){
+                console.log("nextMove", nextMove);
+                console.log("nextCoords", nextCoords);
+            }
+            ghost.node = nodes[nextCoords[0]][nextCoords[1]];
+        }
+        if (collisionDetectionGhost(kim.node)){
+            gameOver();
+        }
+        render();
+     });
 
 }
 function collisionDetectionWall(node){
     //check for node/wall collision
     let collision = false;
-    walls.forEach((element)=>{
+    walls.forEach((element, i)=>{
         if (element.node.value === node.value){
             collision = true;
         }
     });
     return collision;
 }
-function collisionDetectionGem(node){
-//check for kim/gem collision
-gems.forEach((gem, i)=>{
-    if (gem.node.value === node.value){
-        score++;
-        gems.splice(i,1);
-        pointsEl.innerText = score;
-    }
-});
+function collisionDetectionKimGem(node){
+    //check for kim/gem collision
+    gems.forEach((gem, i)=>{
+        if (gem.node.value === node.value){
+            score++;
+            gems.splice(i,1);
+            //pointsEl.innerText = score;
+        }
+    });
 
 }
+function collisionDetectionGhostGem(node){
+    //check for ghost/gem collision
+    let collision = false;
+    gems.forEach((gem)=>{
+        if (gem.node.value === node.value){
+            collision = true;
+        }
+        return collision;
+    });
+}
+
 function collisionDetectionGhost(node){
-    //check and handle ghost/node collision
-    
-
-
+    //check and handle ghost/kim collision
+    let collision = false;
+    ghosts.forEach((ghost)=>{
+        if (ghost.node.value === node.value){
+            collision = true;
+        }
+    });
+    return collision;
 }
-function gameOver(){
 
+function gameOver(){
+    clearInterval(intervId);
+    overlayEl.style.display = "block";
+}
+function restart(){
+    clearInterval(intervId);
+    init();
 }
 
 //rendering function
@@ -433,12 +822,41 @@ function render(){
 
     //render ghosts
     ghosts.forEach((ghost)=>{
-        ghost.drawGhost('kanye');
+        ghost.drawGhost();
     })
+
+}
+function checkForWin(){
+    if (gems.length <1){
+        document.removeEventListener("keydown", playerMove);
+        clearInterval(intervId);
+        overlayEl.style.display = "block";
+        level++;
+        levelEl.innerText = level;
+        nextLvlBtn.addEventListener("click", goToNextLvl);
+    }
+}
+function goToNextLvl(){
+    console.log("go to next level");
+    init();
 
 }
 
 //helper functions
+function clearNode(node){
+    node.updateBG("black", false);
+}
+function findMP(source, end){
+    let result = dijkstra(NUM_ROWS*NUM_COLS,adj,source,end);
+    let minPath = [end];
+    while (result[1] !== source){
+        minPath.unshift(result[1]);
+        result = dijkstra(NUM_ROWS*NUM_COLS,adj,source,result[1]);
+    }
+    minPath.unshift(result[1]);
+    return minPath;  
+}
+
 function nodeToCoord(node){
     let x = Math.floor(node/NUM_COLS);
     let y = node%NUM_COLS;
@@ -448,106 +866,192 @@ function coordToNode(x,y){
     return ((x*NUM_COLS)+(y));
 }
 
+// //generate full array
+// for (let i=0; i<NUM_ROWS; i++){
+//     for (let j=0; j< NUM_COLS; j++){
+//         console.log("["+i+','+j+"]");
+//     }
+// }
 
-//full array
 let allSquares = [
-[0,0],
-[0,1],
-[0,2],
-[0,3],
-[0,4],
-[0,5],
-[0,6],
-[0,7],
-[0,8],
-[1,0],
-[1,1],
-[1,2],
-[1,3],
-[1,4],
-[1,5],
-[1,6],
-[1,7],
-[1,8],
-[2,0],
-[2,1],
-[2,2],
-[2,3],
-[2,4],
-[2,5],
-[2,6],
-[2,7],
-[2,8],
-[3,0],
-[3,1],
-[3,2],
-[3,3],
-[3,4],
-[3,5],
-[3,6],
-[3,7],
-[3,8],
-[4,0],
-[4,1],
-[4,2],
-[4,3],
-[4,4],
-[4,5],
-[4,6],
-[4,7],
-[4,8],
-[5,0],
-[5,1],
-[5,2],
-[5,3],
-[5,4],
-[5,5],
-[5,6],
-[5,7],
-[5,8],
-[6,0],
-[6,1],
-[6,2],
-[6,3],
-[6,4],
-[6,5],
-[6,6],
-[6,7],
-[6,8],
-[7,0],
-[7,1],
-[7,2],
-[7,3],
-[7,4],
-[7,5],
-[7,6],
-[7,7],
-[7,8],
-[8,0],
-[8,1],
-[8,2],
-[8,3],
-[8,4],
-[8,5],
-[8,6],
-[8,7],
-[8,8],
-[9,0],
-[9,1],
-[9,2],
-[9,3],
-[9,4],
-[9,5],
-[9,6],
-[9,7],
-[9,8],
-[10,0],
-[10,1],
-[10,2],
-[10,3],
-[10,4],
-[10,5],
-[10,6],
-[10,7],
-[10,8]
+    [0,0],
+    [0,1],
+    [0,2],
+    [0,3],
+    [0,4],
+    [0,5],
+    [0,6],
+    [0,7],
+    [0,8],
+    [0,9],
+    [0,10],
+    [0,11],
+    [0,12],
+    [0,13],
+    [0,14],
+    [0,15],
+    [0,16],
+    [0,17],
+    [0,18],
+    [0,19],
+    [1,0],
+    [1,1],
+    [1,2],
+    [1,3],
+    [1,4],
+    [1,5],
+    [1,6],
+    [1,7],
+    [1,8],
+    [1,9],
+    [1,10],
+    [1,11],
+    [1,12],
+    [1,13],
+    [1,14],
+    [1,15],
+    [1,16],
+    [1,17],
+    [1,18],
+    [1,19],
+    [2,0],
+    [2,1],
+    [2,2],
+    [2,3],
+    [2,4],
+    [2,5],
+    [2,6],
+    [2,7],
+    [2,8],
+    [2,9],
+    [2,10],
+    [2,11],
+    [2,12],
+    [2,13],
+    [2,14],
+    [2,15],
+    [2,16],
+    [2,17],
+    [2,18],
+    [2,19],
+    [3,0],
+    [3,1],
+    [3,2],
+    [3,3],
+    [3,4],
+    [3,5],
+    [3,6],
+    [3,7],
+    [3,8],
+    [3,9],
+    [3,10],
+    [3,11],
+    [3,12],
+    [3,13],
+    [3,14],
+    [3,15],
+    [3,16],
+    [3,17],
+    [3,18],
+    [3,19],
+    [4,0],
+    [4,1],
+    [4,2],
+    [4,3],
+    [4,4],
+    [4,5],
+    [4,6],
+    [4,7],
+    [4,8],
+    [4,9],
+    [4,10],
+    [4,11],
+    [4,12],
+    [4,13],
+    [4,14],
+    [4,15],
+    [4,16],
+    [4,17],
+    [4,18],
+    [4,19],
+    [5,0],
+    [5,1],
+    [5,2],
+    [5,3],
+    [5,4],
+    [5,5],
+    [5,6],
+    [5,7],
+    [5,8],
+    [5,9],
+    [5,10],
+    [5,11],
+    [5,12],
+    [5,13],
+    [5,14],
+    [5,15],
+    [5,16],
+    [5,17],
+    [5,18],
+    [5,19],
+    [6,0],
+    [6,1],
+    [6,2],
+    [6,3],
+    [6,4],
+    [6,5],
+    [6,6],
+    [6,7],
+    [6,8],
+    [6,9],
+    [6,10],
+    [6,11],
+    [6,12],
+    [6,13],
+    [6,14],
+    [6,15],
+    [6,16],
+    [6,17],
+    [6,18],
+    [6,19],
+    [7,0],
+    [7,1],
+    [7,2],
+    [7,3],
+    [7,4],
+    [7,5],
+    [7,6],
+    [7,7],
+    [7,8],
+    [7,9],
+    [7,10],
+    [7,11],
+    [7,12],
+    [7,13],
+    [7,14],
+    [7,15],
+    [7,16],
+    [7,17],
+    [7,18],
+    [7,19],
+    [8,0],
+    [8,1],
+    [8,2],
+    [8,3],
+    [8,4],
+    [8,5],
+    [8,6],
+    [8,7],
+    [8,8],
+    [8,9],
+    [8,10],
+    [8,11],
+    [8,12],
+    [8,13],
+    [8,14],
+    [8,15],
+    [8,16],
+    [8,17],
+    [8,18],
+    [8,19]
 ];
