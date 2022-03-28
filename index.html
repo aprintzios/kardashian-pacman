@@ -24,9 +24,7 @@
         <div class="aside"></div>
         <div class="board"></div> 
         <div class="aside">
-            <h1 id="lvl-title">LVL</h1>
-            <div id="level">01</div>
-            <!-- <div id="points">00</div> -->
+            <img id="levelImg" src="" alt="level" width="200" height="200">
         </div>
     </div>
     <footer>
@@ -37,10 +35,14 @@
             <button id="nextLvl" class="button2">Let's go!</button>
     </div>
     <div id="overlayLose">
-        <img class="overlayResult" src="./img/overlayLose.png" alt="you lose!">
+        <img class="overlayResult" src="./img/overlayLose.png" alt="you lose!" width="600">
         <button id="loseRestart" class="button2">N E W &nbsp; G A M E</button>
     </div>
 
+
+    <audio id="bling" src="./audio/bling.wav"></audio>
+    <audio id="kimLoseAudio" src="./audio/kimLoseAudio.m4a"></audio>
+    <audio id="kimWinAudio" src="./audio/kimWinAudio.m4a"></audio>
     
     <script src="dijkstra.js"></script>
     <script src="script.js"></script>
