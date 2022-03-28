@@ -522,6 +522,7 @@ let gems = [];
 let adj = [];
 let intervId;
 let score = 0;
+let win;
 let level = 1;
 
 //cache elements
@@ -531,6 +532,7 @@ let board = document.querySelector(".board");
 let resultEl = document.getElementById("result");
 let overlayEl = document.getElementById("overlay");
 let nextLvlBtn = document.getElementById("nextLvl");
+let lvlTitle = document.getElementById("lvl-title");
 
 //initialize
 init();
@@ -541,7 +543,9 @@ btn.addEventListener("click", restart);
 
 //functions
 function init(){
+    win = false;
     overlayEl.style.display = "none";
+    lvlTitle.innerText = level;
     //arrow key event lsitener
     document.addEventListener("keydown", playerMove);
     //initialize DOM
@@ -593,7 +597,6 @@ function init(){
                 //add up neightbor
                 if (i!==0 && !collisionDetectionWall(nodes[i-1][j])){
                     if (i===1 && j===0){
-                        console.log("got here");
                     }
                     adj[node].push([nodes[i-1][j].value,1]);
                 }
@@ -611,7 +614,6 @@ function init(){
                 }
             }
         }
-        console.log(adj);
 
     //initialize ghosts
     kanye = new Ghost(nodes[8][10], "kanye");
@@ -677,6 +679,7 @@ function playerMove(e){
             }
             collisionDetectionKimGem(kim.node);
             if (collisionDetectionGhost(kim.node)){
+                console.log("game over 1");
                 gameOver();
             }
             render();
@@ -692,6 +695,7 @@ function playerMove(e){
             }
             collisionDetectionKimGem(kim.node);
             if (collisionDetectionGhost(kim.node)){
+                console.log("game over 2");
                 gameOver();
             }
             render();
@@ -708,6 +712,7 @@ function playerMove(e){
                 }
                 collisionDetectionKimGem(kim.node);
                 if (collisionDetectionGhost(kim.node)){
+                    console.log("game over 3");
                     gameOver();
                 }
                 render();
@@ -723,6 +728,7 @@ function playerMove(e){
             }
             collisionDetectionKimGem(kim.node);
             if (collisionDetectionGhost(kim.node)){
+                console.log("game over 4");
                 gameOver();
             }
             render();
@@ -745,13 +751,12 @@ function ghostMove(){
         if (!nextMoves.includes(nextMove)){
             nextMoves.push(nextMove);
             let nextCoords = nodeToCoord(nextMove);
-            if (nextMove === 0){
-                console.log("nextMove", nextMove);
-                console.log("nextCoords", nextCoords);
-            }
             ghost.node = nodes[nextCoords[0]][nextCoords[1]];
         }
         if (collisionDetectionGhost(kim.node)){
+            console.log("ghost node val", ghost.node.value);
+            console.log("kim node val", kim.node.value);
+            console.log("game over 5");
             gameOver();
         }
         render();
@@ -786,26 +791,40 @@ function collisionDetectionGhostGem(node){
         if (gem.node.value === node.value){
             collision = true;
         }
-        return collision;
     });
+    return collision;
 }
 
 function collisionDetectionGhost(node){
     //check and handle ghost/kim collision
     let collision = false;
     ghosts.forEach((ghost)=>{
+        console.log("ghost name", ghost.name);
+        console.log("ghost val", ghost.node.value);
         if (ghost.node.value === node.value){
+            console.log("collision");
+            console.log("node", node.value);
             collision = true;
         }
     });
+    console.log("collis", collision);
     return collision;
 }
 
 function gameOver(){
     clearInterval(intervId);
-    overlayEl.style.display = "block";
+    if (win){
+        document.removeEventListener("keydown", playerMove);
+        overlayEl.style.display = "block";
+        level++;
+        console.log("pre button press");
+        nextLvlBtn.addEventListener("click", goToNextLvl);
+    } else{
+        alert("you lost");
+    }   
 }
 function restart(){
+    level = 1;
     clearInterval(intervId);
     init();
 }
@@ -828,18 +847,13 @@ function render(){
 }
 function checkForWin(){
     if (gems.length <1){
-        document.removeEventListener("keydown", playerMove);
-        clearInterval(intervId);
-        overlayEl.style.display = "block";
-        level++;
-        levelEl.innerText = level;
-        nextLvlBtn.addEventListener("click", goToNextLvl);
+        win = true;
+        gameOver();
     }
 }
 function goToNextLvl(){
-    console.log("go to next level");
+    console.log("btn pressed");
     init();
-
 }
 
 //helper functions
