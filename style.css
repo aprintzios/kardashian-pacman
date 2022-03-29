@@ -140,9 +140,14 @@ footer{
     left: 50%;
     font-size: 20px;
     color: rgb(255, 203, 229);
-    transform: translate(-80%,200%);
+    transform: translate(-65%,350%);
     -ms-transform: translate(-50%,-50%);
   }
+  #nextLvl:hover{
+    color:hotpink;
+    border-color:hotpink;
+    cursor: pointer;
+}
   #overlayLose {
     position: fixed; /* Sit on top of the page content */
     display: none; /* Hidden by default */
@@ -162,6 +167,11 @@ footer{
     left: 50%;
     font-size: 20px;
     color: rgb(255, 203, 229);
-    transform: translate(-80%,200%);
+    transform: translate(-70%,300%);
     -ms-transform: translate(-50%,-50%);
-  }
+}
+#loseRestart:hover{
+    color:hotpink;
+    border-color:hotpink;
+    cursor: pointer;
+}
