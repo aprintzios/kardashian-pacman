@@ -175,3 +175,75 @@ footer{
     border-color:hotpink;
     cursor: pointer;
 }
+#overlayFinal {
+    position: fixed; /* Sit on top of the page content */
+    display: none; /* Hidden by default */
+    width: 100%; /* Full width (cover the whole page) */
+    height: 100%; /* Full height (cover the whole page) */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(74, 38, 38, 0.502); /* Black background with opacity */
+    z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+    cursor: pointer; /* Add a pointer on hover */
+  }
+  #winRestart{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-size: 14px;
+    color: rgb(255, 203, 229);
+    transform: translate(-60%,440%);
+    -ms-transform: translate(-50%,-50%);
+}
+#winRestart:hover{
+    color:hotpink;
+    border-color:hotpink;
+    cursor: pointer;
+}
+#overlayStart {
+    position: fixed; /* Sit on top of the page content */
+    display: block; 
+    width: 100%; /* Full width (cover the whole page) */
+    height: 100%; /* Full height (cover the whole page) */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(74, 38, 38, 0.502); /* Black background with opacity */
+    z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+    cursor: pointer; /* Add a pointer on hover */
+  }
+  #startGame{
+    position: absolute;
+    top: 92%;
+    left: 65%;
+    font-size: 20px;
+    color: rgb(255, 203, 229);
+    /* transform: translate(-70%,300%); */
+    -ms-transform: translate(-50%,-50%);
+}
+#startGame:hover{
+    color:hotpink;
+    border-color:hotpink;
+    cursor: pointer;
+}
+#seStart{
+    position: absolute;
+    top: 75%;
+    left: 18%;
+    font-size: 20px;
+    color: rgb(255, 203, 229);
+    transform: translate(-100%,300%);
+    -ms-transform: translate(-50%,-50%);
+}
+#soundStart{
+    position: absolute;
+    top: 75%;
+    left: 30%;
+    font-size: 20px;
+    color: rgb(255, 203, 229);
+    transform: translate(-90%,300%);
+    -ms-transform: translate(-50%,-50%);
+}

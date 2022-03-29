@@ -533,10 +533,14 @@ let seOn = false;
 let btn = document.getElementById("restart");
 let board = document.querySelector(".board");
 let resultEl = document.getElementById("result");
+let overlayStartEl = document.getElementById("overlayStart");
 let overlayWinEl = document.getElementById("overlayWin");
 let overlayLoseEl = document.getElementById("overlayLose");
+let overlayFinalEl = document.getElementById("overlayFinal");
+let gameStartBtn = document.getElementById("startGame");
 let nextLvlBtn = document.getElementById("nextLvl");
 let loseRestartBtn = document.getElementById("loseRestart");
+let winRestartBtn = document.getElementById("winRestart");
 let lvlImg = document.getElementById("levelImg");
 let blingAudio = document.getElementById("bling");
 let kimLoseAudio = document.getElementById("kimLoseAudio");
@@ -544,21 +548,33 @@ let kimWinAudio = document.getElementById("kimWinAudio");
 let bgAudio = document.getElementById("bgAudio");
 let soundBtn = document.getElementById("sound");
 let seBtn = document.getElementById("soundEffects");
-
-//initialize
-init();
+let soundStartBtn = document.getElementById("soundStart");
+let seStartBtn = document.getElementById("seStart");
 
 //event listeners
-btn.addEventListener("click", restart);
-soundBtn.addEventListener("click", handleSound);
-seBtn.addEventListener("click", handleSE);
+// btn.addEventListener("click", restart);
+// soundBtn.addEventListener("click", handleSound);
+// seBtn.addEventListener("click", handleSE);
+gameStartBtn.addEventListener("click", gameStart);
+seStartBtn.addEventListener("click", handleSEStart);
+soundStartBtn.addEventListener("click", handleSoundStart);
 
 
 //functions
+function gameStart(){
+    //event listeners
+    btn.addEventListener("click", restart);
+    soundBtn.addEventListener("click", handleSound);
+    seBtn.addEventListener("click", handleSE);
+    //initialize
+    init();
+}
 function init(){
     win = false;
+    overlayStartEl.style.display = "none";
     overlayWinEl.style.display = "none";
     overlayLoseEl.style.display = "none";
+    overlayFinalEl.style.display = "none";
     kimWinAudio.pause();
     kimLoseAudio.pause();
     lvlImg.src="./img/level" +level+ ".png"
@@ -824,10 +840,15 @@ function gameOver(){
     clearInterval(intervId);
     document.removeEventListener("keydown", playerMove);
     if (win){
-        overlayWinEl.style.display = "block";
-        level++;
-        nextLvlBtn.addEventListener("click", goToNextLvl);
-        //kimWinAudio.play();
+        if (level === 10){
+            overlayFinalEl.style.display = "block";
+            winRestartBtn.addEventListener("click", restart);
+        } else{
+            overlayWinEl.style.display = "block";
+            level++;
+            nextLvlBtn.addEventListener("click", goToNextLvl);
+            //kimWinAudio.play();
+        }
     } else{
         bgAudio.pause();
         overlayLoseEl.style.display = "block";
@@ -868,7 +889,35 @@ function handleSE(){
         seBtn.src = "./img/seOn.png";
     }
 }
-
+function handleSoundStart(){
+    if (audioOn){
+        //turn audio off
+        audioOn = false;
+        bgAudio.pause();
+        //update img
+        soundStartBtn.src = "./img/sOffStart.png";
+        soundBtn.src = "./img/soundOff.png";
+    } else{
+        bgAudio.play();
+        audioOn = true;
+        //update img
+        soundStartBtn.src = "./img/sOnStart.png";
+        soundBtn.src = "./img/soundOn.png";
+    }
+}
+function handleSEStart(){
+    if (seOn){
+        //turn off
+        seOn = false;
+        seStartBtn.src = "./img/seOffStart.png";
+        seBtn.src = "./img/seOff.png";
+    } else{
+        blingAudio.play();
+        seOn = true;
+        seStartBtn.src = "./img/seOnStart.png";
+        seBtn.src = "./img/seOn.png";
+    }
+}
 //rendering function
 function render(){
     //render gems
