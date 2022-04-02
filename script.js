@@ -821,8 +821,7 @@ function gameOver(){
         } else{
             overlayWinEl.style.display = "block";
             level++;
-            nextLvlBtn.addEventListener("click", goToNextLvl);
-            //kimWinAudio.play();
+            nextLvlBtn.addEventListener("click", init);
         }
     } else{
         bgAudio.pause();
@@ -915,9 +914,6 @@ function checkForWin(){
         gameOver();
     }
 }
-function goToNextLvl(){
-    init();
-}
 
 //helper functions
 function clearNode(node){
@@ -925,7 +921,6 @@ function clearNode(node){
 }
 function findMP(source, end){
     let result = dijkstra(NUM_ROWS*NUM_COLS,adj,source,end);
-    //let minPath = [end];
     let minPath = [];
     while (result[1] !== source){
         minPath.unshift(result[1]);
