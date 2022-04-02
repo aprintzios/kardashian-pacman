@@ -231,19 +231,19 @@ footer{
 }
 #seStart{
     position: absolute;
-    top: 75%;
-    left: 18%;
+    top: 90%;
+    left: 22%;
     font-size: 20px;
     color: rgb(255, 203, 229);
-    transform: translate(-100%,300%);
+    /* transform: translate(-100%,300%); */
     -ms-transform: translate(-50%,-50%);
 }
 #soundStart{
     position: absolute;
-    top: 75%;
+    top: 90%;
     left: 30%;
     font-size: 20px;
     color: rgb(255, 203, 229);
-    transform: translate(-90%,300%);
+    /* transform: translate(-90%,300%); */
     -ms-transform: translate(-50%,-50%);
 }
