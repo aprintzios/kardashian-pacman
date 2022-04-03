@@ -19,7 +19,6 @@ class PriorityQueue{
 
 function dijkstra(V,Adj,S,F)
 {
-    //code here
     let dist = new Array(V);
     let prev = new Array(V);
     let vis = new Array(V);
@@ -51,12 +50,3 @@ function dijkstra(V,Adj,S,F)
 
     return [dist[F], prev[F]]
 }
-
-// let NUM_ROWS = 9; 
-// let NUM_COLS = 20;
-
-// for (let i=0; i<NUM_ROWS; i++){
-//     for (let j=0; j< NUM_COLS; j++){
-//         console.log("["+i+','+j+"]");
-//     }
-// }
