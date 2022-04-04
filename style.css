@@ -222,7 +222,7 @@ footer{
     font-size: 20px;
     color: rgb(255, 203, 229);
     /* transform: translate(-70%,300%); */
-    -ms-transform: translate(-50%,-50%);
+    /* -ms-transform: translate(-50%,-50%); */
 }
 #startGame:hover{
     color:hotpink;
@@ -236,7 +236,7 @@ footer{
     font-size: 20px;
     color: rgb(255, 203, 229);
     /* transform: translate(-100%,300%); */
-    -ms-transform: translate(-50%,-50%);
+    /* -ms-transform: translate(-50%,-50%); */
 }
 #soundStart{
     position: absolute;
@@ -245,5 +245,5 @@ footer{
     font-size: 20px;
     color: rgb(255, 203, 229);
     /* transform: translate(-90%,300%); */
-    -ms-transform: translate(-50%,-50%);
+    /* -ms-transform: translate(-50%,-50%); */
 }
