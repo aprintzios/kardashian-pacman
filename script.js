@@ -131,7 +131,7 @@ let wallMap = [];
 //add the same walls to other half to make the game board vertically symmetrical
 let mid;
 if (NUM_COLS%2 === 0){
- mid = NUM_COLS/2;
+    mid = NUM_COLS/2;
 } else{
     mid = Math.floor(NUM_COLS/2)+1; 
 }

@@ -130,7 +130,6 @@ footer{
     font-size: 30px;
     background-image: './img/overlayWin.png';
     background-size: cover;
-    /* color: rgb(255, 203, 229); */
     transform: translate(-50%,-50%);
     -ms-transform: translate(-50%,-50%);
   }
@@ -217,12 +216,10 @@ footer{
   }
   #startGame{
     position: absolute;
-    top: 92%;
+    top: 90%;
     left: 55%;
     font-size: 20px;
     color: rgb(255, 203, 229);
-    /* transform: translate(-70%,300%); */
-    /* -ms-transform: translate(-50%,-50%); */
 }
 #startGame:hover{
     color:hotpink;
@@ -232,18 +229,14 @@ footer{
 #seStart{
     position: absolute;
     top: 90%;
-    left: 22%;
+    left: 42%;
     font-size: 20px;
     color: rgb(255, 203, 229);
-    /* transform: translate(-100%,300%); */
-    /* -ms-transform: translate(-50%,-50%); */
 }
 #soundStart{
     position: absolute;
     top: 90%;
-    left: 30%;
+    left: 32%;
     font-size: 20px;
     color: rgb(255, 203, 229);
-    /* transform: translate(-90%,300%); */
-    /* -ms-transform: translate(-50%,-50%); */
 }
