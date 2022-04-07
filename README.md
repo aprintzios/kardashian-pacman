@@ -3,8 +3,8 @@
 
 
 >Screenshots <br>
+    <img src="./img/gamePlay.png" width="400"> <br>
     <img src="./img/overlayStart.png" width="250">
-    <img src="./img/gamePlay.png" width="400">
     <img src="./img/overlayWin.png" width="250">
     <img src="./img/overlayLose.png" width="250">
     <img src="./img/overlayFinal.png" width="250">
@@ -15,5 +15,5 @@
 >> HTML, CSS, JavaScript
 
 >Getting Started
->>Click on the following link: https://pages.git.generalassemb.ly/aprintzios/oop-pacman/
+>>Click on the following link: https://pages.git.generalassemb.ly/aprintzios/oop-pacman/ <br>
 >>Turn on music and sound effects and click "I'm Ready!"
