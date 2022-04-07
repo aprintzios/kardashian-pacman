@@ -1,10 +1,10 @@
 >TITLE: Keeping Up with the Kar-PAC-shians
->>Help Kim file for divorce from Kanye once and for all!
+>>Help Kim file for divorce from Kanye once and for all in this pacman-style browser game!
 
 
->Screenshots
+>Screenshots <br>
     <img src="./img/overlayStart.png" width="250">
-    <img src="./img/gamePlay.png" width="250">
+    <img src="./img/gamePlay.png" width="400">
     <img src="./img/overlayWin.png" width="250">
     <img src="./img/overlayLose.png" width="250">
     <img src="./img/overlayFinal.png" width="250">
@@ -15,4 +15,5 @@
 >> HTML, CSS, JavaScript
 
 >Getting Started
->>Click on the following link and once
+>>Click on the following link: https://pages.git.generalassemb.ly/aprintzios/oop-pacman/
+>>Turn on music and sound effects and click "I'm Ready!"
