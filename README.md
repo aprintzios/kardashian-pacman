@@ -4,7 +4,7 @@
 
 >Screenshots <br>
     <img src="./img/gamePlay.png" width="400"> <br>
-    <img src="./img/overlayStart.png" width="250">
+    <img src="./img/overlayStart.png" width="400"> <br>
     <img src="./img/overlayWin.png" width="250">
     <img src="./img/overlayLose.png" width="250">
     <img src="./img/overlayFinal.png" width="250">
