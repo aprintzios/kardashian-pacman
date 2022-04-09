@@ -3,8 +3,8 @@
 
 
 >Screenshots <br>
-    <img src="./img/gamePlay.png" width="400"> <br>
     <img src="./img/overlayStart.png" width="400"> <br>
+    <img src="./img/gamePlay.png" width="400"> <br>
     <img src="./img/overlayWin.png" width="250">
     <img src="./img/overlayLose.png" width="250">
     <img src="./img/overlayFinal.png" width="250">
@@ -19,5 +19,5 @@
 >>Turn on music and sound effects and click "I'm Ready!"
 
 >Icebox
->>Refine overlay images/buttons
+>>Refine overlay images/buttons <br>
 >>Refine gameboard design
