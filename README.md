@@ -17,3 +17,7 @@
 >Getting Started
 >>Click on the following link: https://pages.git.generalassemb.ly/aprintzios/oop-pacman/ <br>
 >>Turn on music and sound effects and click "I'm Ready!"
+
+>Icebox
+>>Refine overlay images/buttons
+>>Refine gameboard design
