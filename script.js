@@ -1,4 +1,4 @@
-/* CLASSES */
+/* CLASSES COMMENTING FOR PRACTICE*/
 class Node{
     constructor(val){
         this.value = val;
