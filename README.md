@@ -15,7 +15,7 @@
 >> HTML, CSS, JavaScript
 
 >Getting Started
->>Click on the following link: https://pages.git.generalassemb.ly/aprintzios/oop-pacman/ <br>
+>>Click on the following link: https://aprintzios.github.io/kardashian-pacman/ <br>
 >>Turn on music and sound effects and click "I'm Ready!"
 
 >Icebox
